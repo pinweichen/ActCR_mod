@@ -37,11 +37,15 @@ RA = function(
 
   x_bin = bin_data(x, window = window, method = method)
   M10 = max(roll(x_bin, 10 * 1440/window/24))
+  M10_midpt = which(max(roll(x_bin, 10 * 1440/window/24)))
   L5 = min(roll(x_bin, 5 * 1440/window/24))
+  L5_midpt = which(min(roll(x_bin, 5 * 1440/window/24)))
   relaamp = (M10 - L5)/(M10 + L5)
   params = list("M10" = M10,
                 "L5" = L5,
-                "RA" = relaamp)
+                "RA" = relaamp,
+                "M10_time" = M10_midpt,
+                "L5_time" = L5_midpt)
   return(params)
 }
 

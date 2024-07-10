@@ -38,11 +38,11 @@ RA_long = function(
   ra_out =  apply(x[,-c(1,2)], 1,
                   RA, window = window, method = method)
   out = unlist(ra_out)
-  params = as.data.frame(matrix(out,ncol = 3,byrow = T))
-  names(params) = c("M10","L5","RA")
+  params = as.data.frame(matrix(out,ncol = 5,byrow = T))
+  names(params) = c("M10","L5","RA", "M10_time","L5_time")
   params = params %>% mutate(ID = x$ID,Day = x$Day)
-  names(params)[1:3] = paste0(names(params)[1:3],"_",window)
-  params = params[,c(4,5,1:3)]
+  names(params)[1:5] = paste0(names(params)[1:5],"_",window)
+  params = params[,c(6,7,1:5)]
 
   return(params)
 }
